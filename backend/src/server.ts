@@ -1,5 +1,6 @@
 import app from './app'
+import { configApp } from './config/config'
 
-app.listen(1313, () => {
-  console.log('App listing on port 1313')
+app.listen(configApp.port, () => {
+  console.log(`App listing on port ${configApp.port}`)
 })
