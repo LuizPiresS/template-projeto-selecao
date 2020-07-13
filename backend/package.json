@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --ignore-watch node_modules --no-notify src/server.ts",
     "build": "rm -rf ./build && tsc",
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:unit": "jest --passWithNoTests -c jest-unit-config.js",
+    "test:integration": "jest --passWithNoTests -c jest-integration-config.js"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
