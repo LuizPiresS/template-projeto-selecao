@@ -1,5 +1,8 @@
 import express from 'express'
-import { createConnection, Connection } from 'typeorm'
+import { createConnection, Connection, getCustomRepository } from 'typeorm'
+
+import connetionOptions from './config/ormconfig'
+import { UserRepository } from './database/repositories/user-repository'
 
 class App {
   public express: express.Application
@@ -8,7 +11,6 @@ class App {
     this.express = express()
 
     this.middlewares()
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.database()
     this.routes()
   }
@@ -18,14 +20,18 @@ class App {
   }
 
   private async database (): Promise<Connection> {
-    return await createConnection()
+    return await createConnection(connetionOptions)
   }
 
-  private routes (): void {
-    this.express.get('/', (req, res) => {
-      return res.send({
-        response: 'Test'
-      })
+  private async routes (): Promise<void> {
+    this.express.post('/', async (req, res) => {
+      const userRepository = getCustomRepository(UserRepository)
+      const user = userRepository.create()
+      user.firstName = req.body.firstName
+      user.lastName = req.body.lastName
+      user.age = 39
+      const result = await userRepository.save(user)
+      return res.send(result)
     })
   }
 }
