@@ -1,4 +1,5 @@
 import express from 'express'
+import { createConnection, Connection } from 'typeorm'
 
 class App {
   public express: express.Application
@@ -7,6 +8,7 @@ class App {
     this.express = express()
 
     this.middlewares()
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.database()
     this.routes()
   }
@@ -15,7 +17,9 @@ class App {
     this.express.use(express.json())
   }
 
-  private database (): void {}
+  private async database (): Promise<Connection> {
+    return await createConnection()
+  }
 
   private routes (): void {
     this.express.get('/', (req, res) => {

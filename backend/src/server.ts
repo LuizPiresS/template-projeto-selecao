@@ -1,6 +1,11 @@
 import app from './app'
-import { configApp } from './config/config'
+import dotenv from 'dotenv'
+import 'reflect-metadata'
+dotenv.config()
+// import { configApp } from './config/config'
 
-app.listen(configApp.port, () => {
-  console.log(`App listing on port ${configApp.port}`)
+const port = parseInt(process.env.PORT)
+
+app.listen(port, () => {
+  console.log(`App listing on port ${port}`)
 })
