@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { Presenter } from '../../common/presenter'
 import { Validator } from '../../common/validator'
 import { CreateUserRequest } from '../dto/create-user.request'
 import { CreateUserResponse } from '../dto/create-user.response'
+import { UserDuplicatedEmailError } from '../errors/user-duplicated-email.error'
 import { UserEmailInvalidError } from '../errors/user-email-invalid.error'
+import { User } from '../user'
+import { IUserRepository } from './../user.repository'
 import { CreateUserInteractor } from './create-user.interactor'
 
 const validatorMock = {
@@ -14,6 +18,12 @@ const presenterMock = {
   throw: jest.fn()
 }
 
+const userRepositoryMock = {
+  save: jest.fn(),
+  findByEmail: jest.fn()
+
+}
+
 describe('CreateUSer Controller', () => {
   let interactor: CreateUserInteractor
 
@@ -21,12 +31,14 @@ describe('CreateUSer Controller', () => {
     interactor = new CreateUserInteractor(
       // userRepositoryMock as UserRepository,
       validatorMock as Validator,
-      presenterMock as Presenter<CreateUserResponse>
+      presenterMock as Presenter<CreateUserResponse>,
+      userRepositoryMock as IUserRepository
 
     )
 
     beforeEach(() => {
       validatorMock.isEmail.mockReturnValue(true)
+      userRepositoryMock.findByEmail.mockReturnValue(false)
     // userRepositoryMock.findEmail.mockReturnValue(false);
     })
   })
@@ -44,6 +56,34 @@ describe('CreateUSer Controller', () => {
 
     expect(presenterMock.throw).toBeCalledWith(
       expect.any(UserEmailInvalidError)
+    )
+  })
+
+  test('test duplicated email', async () => {
+    userRepositoryMock.save.mockImplementation(
+      (data: CreateUserRequest): CreateUserResponse => {
+        return {
+          ...data,
+          id: 'uuid',
+          firstName: 'first_name',
+          lastName: 'last_name',
+          email: 'any_mail@mail.com',
+          createdAt: Date.now()
+        } as User
+      }
+    )
+
+    userRepositoryMock.findByEmail.mockReturnValue(true)
+    await interactor.execute({
+      firstName: 'first_name',
+      lastName: 'last_name',
+      gitHubUsername: 'github_username',
+      email: 'any_mail@mail.com',
+      password: 'any_password'
+    })
+
+    expect(presenterMock.throw).toBeCalledWith(
+      expect.any(UserDuplicatedEmailError)
     )
   })
 })
