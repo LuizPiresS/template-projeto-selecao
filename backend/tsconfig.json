@@ -2,9 +2,18 @@
   "compilerOptions": {
     "target": "ES2019",
     "module": "CommonJS",
+    "lib": ["ES6"],
+    "allowJs": true,
     "sourceMap": true,
+    "removeComments": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
+    "resolveJsonModule": true,
     "strict": true,
-    "outDir": "build/",
+    "rootDir": "./src",
+    "outDir": "./build",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
