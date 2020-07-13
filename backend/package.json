@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "Luiz Pires",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --ignore-watch node_modules --no-notify src/server.ts",
+    "build": "rm -rf ./build && tsc"
+  },
   "devDependencies": {
     "@types/node": "^14.0.22",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
@@ -13,6 +17,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "ts-node-dev": "^1.0.0-pre.51",
     "typescript": "^3.9.6"
   },
   "dependencies": {
