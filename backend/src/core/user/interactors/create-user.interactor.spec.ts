@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import { Presenter } from '../../common/presenter'
-import { Validator } from '../../common/validator'
+import { IPresenter } from '../../common/IPresenter'
+import { IValidator } from '../../common/IValidator'
 import { CreateUserRequest } from '../dto/create-user.request'
 import { CreateUserResponse } from '../dto/create-user.response'
 import { UserDuplicatedEmailError } from '../errors/user-duplicated-email.error'
@@ -29,9 +29,8 @@ describe('CreateUSer Controller', () => {
 
   beforeAll(() => {
     interactor = new CreateUserInteractor(
-      // userRepositoryMock as UserRepository,
-      validatorMock as Validator,
-      presenterMock as Presenter<CreateUserResponse>,
+      validatorMock as IValidator,
+      presenterMock as IPresenter<CreateUserResponse>,
       userRepositoryMock as IUserRepository
 
     )
@@ -39,7 +38,6 @@ describe('CreateUSer Controller', () => {
     beforeEach(() => {
       validatorMock.isEmail.mockReturnValue(true)
       userRepositoryMock.findByEmail.mockReturnValue(false)
-    // userRepositoryMock.findEmail.mockReturnValue(false);
     })
   })
   test('test the email is valid', async () => {

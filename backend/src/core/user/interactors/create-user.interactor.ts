@@ -1,5 +1,5 @@
-import { Presenter } from '../../common/presenter'
-import { Validator } from '../../common/validator'
+import { IPresenter } from '../../common/IPresenter'
+import { IValidator } from '../../common/IValidator'
 import { CreateUserRequest } from '../dto/create-user.request'
 import { CreateUserResponse } from '../dto/create-user.response'
 import { UserEmailInvalidError } from '../errors'
@@ -8,8 +8,8 @@ import { UserDuplicatedEmailError } from './../errors/user-duplicated-email.erro
 
 export class CreateUserInteractor {
   constructor (
-    protected readonly validator: Validator,
-    protected readonly presenter: Presenter<CreateUserResponse>,
+    protected readonly validator: IValidator,
+    protected readonly presenter: IPresenter<CreateUserResponse>,
     protected readonly userRepository: IUserRepository
   ) {}
 
