@@ -1,5 +1,5 @@
 import { ConnectionOptions } from 'typeorm'
-// import { dbConfig } from './config'
+
 const connetionOptions: ConnectionOptions = {
   type: 'mariadb',
   host: 'localhost',
@@ -10,15 +10,20 @@ const connetionOptions: ConnectionOptions = {
   synchronize: true,
   logging: false,
   entities: [
-    'src/database/entity/**/*.ts',
-    'build/database/entity/**/*.js'
+    'src/database/entities/**/*.ts',
+    'build/database/entities/**/*.js'
   ],
   migrations: [
     'src/database/migration/**/*.ts'
   ],
   subscribers: [
     'src/database/subscriber/**/*.ts'
-  ]
+  ],
+  cli: {
+    entitiesDir: 'src/database/entities',
+    migrationsDir: 'src/database/migrations',
+    subscribersDir: 'src/database/subscribers'
+  }
 }
 
 export default connetionOptions
