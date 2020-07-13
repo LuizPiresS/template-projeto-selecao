@@ -29,7 +29,8 @@ class App {
       const user = userRepository.create()
       user.firstName = req.body.firstName
       user.lastName = req.body.lastName
-      user.age = 39
+      user.email = req.body.email
+      user.password = req.body.password
       const result = await userRepository.save(user)
       return res.send(result)
     })
