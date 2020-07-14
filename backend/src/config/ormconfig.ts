@@ -1,12 +1,11 @@
 import { ConnectionOptions } from 'typeorm'
 
 const connetionOptions: ConnectionOptions = {
-  type: 'mariadb',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: 'root',
-  database: 'magrathea',
+  type: 'postgres',
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
   entities: [
