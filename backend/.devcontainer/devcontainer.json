@@ -1,0 +1,18 @@
+{
+  "name": "Magrathea Labs",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "application",
+  "workspaceFolder": "/magrathea",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh"
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+    "usernamehw.errorlens",
+    "editorconfig.editorconfig",
+    "visualstudioexptteam.vscodeintellicode"
+  ],
+  "remoteUser": "node"
+}
