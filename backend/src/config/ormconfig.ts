@@ -1,6 +1,10 @@
+// import path from 'path'
 import { ConnectionOptions } from 'typeorm'
 
+// const DatabaseDataSourceDirectory = path.resolve(__dirname, '..', 'database')
+
 const connetionOptions: ConnectionOptions = {
+  name: 'default',
   type: 'postgres',
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
