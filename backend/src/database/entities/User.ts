@@ -1,7 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
+
+import { User } from '../../core/user/user'
 
 @Entity()
-export class User {
+export class UserEntity implements User {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -12,8 +14,20 @@ export class User {
   lastName: string
 
   @Column()
+  gitHubUsername: string
+
+  @Column()
   email: string
 
   @Column()
   password: string
+
+  @CreateDateColumn()
+  createdAt: string
+
+  @UpdateDateColumn()
+  updatedAt: string
+
+  @DeleteDateColumn()
+  deletedAt: string
 }
