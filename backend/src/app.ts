@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from 'express'
 import { createConnection } from 'typeorm'
 
@@ -15,6 +16,7 @@ class App {
 
   private middlewares (): void {
     this.express.use(express.json())
+    this.express.use(cors())
   }
 
   private async routes (): Promise<void> {

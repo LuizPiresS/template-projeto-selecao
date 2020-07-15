@@ -1,2 +1,6 @@
-body {}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #282828;
+  color: #ebdbb2;
+}
 
