@@ -3,4 +3,6 @@ export interface CreateUserResponse {
   firstName: string
   lastName: string
   gitHubUsername: string
+  email: string
+  createdAt: string
 }
