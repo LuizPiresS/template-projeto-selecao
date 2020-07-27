@@ -1,0 +1,12 @@
+{
+  "name": "magrathealabs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": "git@github.com:LuizPiresS/template-projeto-selecao.git",
+  "author": "Luiz Pires <kw13code@gmail.com>",
+  "license": "MIT"
+}
