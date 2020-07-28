@@ -7,7 +7,9 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start:api": "yarn workspace @magrathealabs/backend dev",
+    "start:front": "yarn workspace @magrathealabs/frontend start"
   },
   "devDependencies": {
     "@types/jest": "24.9.0",
