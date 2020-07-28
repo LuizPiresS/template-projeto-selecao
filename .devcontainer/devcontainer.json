@@ -14,7 +14,8 @@
 	"editorconfig.editorconfig",
 	"visualstudioexptteam.vscodeintellicode",
 	"humao.rest-client",
-	"tabnine.tabnine-vscode"
+	"tabnine.tabnine-vscode",
+	"esbenp.prettier-vscode"
 ],
   "remoteUser": "node"
 }
