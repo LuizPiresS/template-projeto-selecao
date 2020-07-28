@@ -1,20 +1,25 @@
-name: Node.js CI
+name: Build & Deploy (Production)
 
-on: pull_request
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'packages/backend/**'
+      # - 'packages/another-package/**'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - run: yarn
-      - run: yarn lint
-      - run: yarn coverage
-        env:
-          CI: true
-      - uses: codecov/codecov-action@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-      - run: yarn build
+          node-version: 12.x
+
+      - name: Deploy
+        run: echo "Deployed"
