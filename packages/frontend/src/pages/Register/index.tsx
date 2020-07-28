@@ -14,17 +14,17 @@ type FormValues = {
 
 const Register: React.FC = () => {
   const { register, handleSubmit } = useForm<FormValues>()
-  const onSubmit: SubmitHandler<FormValues> = data => {
+  const onSubmit: SubmitHandler<FormValues> = values => {
     axios
-      .post('http://localhost:3003/users', data)
+      .post('http://localhost:3003/users', values)
       .then(resp => {
         const { data } = resp
         if (data) {
-          localStorage.setItem('app-token', data.token)
+          localStorage.setItem('app-token', data.email)
         }
       })
       .catch(error => {
-        console.log(error.response.data.error.message)
+        console.log(error.response)
       })
   }
 
@@ -37,7 +37,7 @@ const Register: React.FC = () => {
         <input placeholder="Sobrenome" name="lastName" ref={register} />
         <input
           placeholder="Nome de usuário github"
-          name="githubUsername"
+          name="gitHubUsername"
           ref={register}
         />
         <input placeholder="E-mail" name="email" ref={register} />

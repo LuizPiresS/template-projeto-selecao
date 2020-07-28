@@ -7,22 +7,19 @@ import { UserEmailInvalidError } from '../../../core/user/errors/user-email-inva
 import { isInstanceOf } from '../../../utils/instanceof'
 
 export class CreateUserJSONPresenter implements IPresenter<CreateUserResponse> {
-  constructor (private readonly res: Response) {}
+  // eslint-disable-next-line no-useless-constructor
+  constructor(private readonly res: Response) {}
 
-  async reply (data: CreateUserResponse): Promise<void> {
-    const responseJSON = { email: data.email }
+  async reply(data: CreateUserResponse): Promise<void> {
+    const responseJSON = { email: data.email, token: data.token }
 
     // send data
     this.res.status(201).send(responseJSON)
   }
 
-  async throw (error: Error): Promise<void> {
+  async throw(error: Error): Promise<void> {
     if (
-      isInstanceOf(error, [
-        UserEmailInvalidError,
-        UserDuplicatedEmailError
-      ])
-
+      isInstanceOf(error, [UserEmailInvalidError, UserDuplicatedEmailError])
     ) {
       // format error
       const responseJSON = {
