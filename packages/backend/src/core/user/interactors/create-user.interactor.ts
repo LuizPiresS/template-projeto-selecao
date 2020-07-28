@@ -8,14 +8,15 @@ import { IUserRepository } from '../user.repository'
 import { UserDuplicatedEmailError } from './../errors/user-duplicated-email.error'
 
 export class CreateUserInteractor {
-  constructor (
+  // eslint-disable-next-line no-useless-constructor
+  constructor(
     protected readonly validator: IValidator,
     protected readonly presenter: IPresenter<CreateUserResponse>,
     protected readonly userRepository: IUserRepository,
     protected readonly security: ISecurity
   ) {}
 
-  async execute (data: CreateUserRequest): Promise<void> {
+  async execute(data: CreateUserRequest): Promise<void> {
     try {
       if (!data.email) {
         throw new UserEmailInvalidError('Invalid email')

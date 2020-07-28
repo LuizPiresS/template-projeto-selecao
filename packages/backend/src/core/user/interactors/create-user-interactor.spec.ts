@@ -41,7 +41,6 @@ describe('CreateUSer Controller', () => {
       presenterMock as IPresenter<CreateUserResponse>,
       userRepositoryMock as IUserRepository,
       securityMock as ISecurity
-
     )
 
     beforeEach(() => {
