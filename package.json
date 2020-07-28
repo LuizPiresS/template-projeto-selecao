@@ -1,0 +1,24 @@
+{
+  "name": "magrathealabs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "jest",
+    "start:api": "yarn workspace @magrathealabs/backend dev",
+    "start:front": "yarn workspace @magrathealabs/frontend start"
+  },
+  "devDependencies": {
+    "@types/jest": "24.9.0",
+    "jest": "24.9.0",
+    "ts-jest": "^26.1.3",
+    "typescript": "^3.9.7",
+    "@magrathealabs/eslint-config": "*"
+  },
+  "repository": "git@github.com:LuizPiresS/template-projeto-selecao.git",
+  "author": "Luiz Pires <kw13code@gmail.com>",
+  "license": "MIT"
+}

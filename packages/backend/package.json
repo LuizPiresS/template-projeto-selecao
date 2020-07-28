@@ -1,0 +1,32 @@
+{
+  "name": "@magrathealabs/backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Luiz Pires",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --ignore-watch node_modules --no-notify src/server.ts",
+    "build": "rm -rf ./build && tsc",
+    "test": "jest --passWithNoTests",
+    "test:unit": "jest --passWithNoTests -c jest-unit-config.js",
+    "test:integration": "jest --passWithNoTests -c jest-integration-config.js"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.22",
+    "@types/pg": "^7.14.4",
+    "ts-node-dev": "^1.0.0-pre.51"
+  },
+  "dependencies": {
+    "@brazilian-utils/brazilian-utils": "^1.0.0-rc.9",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.3.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25"
+  }
+}
