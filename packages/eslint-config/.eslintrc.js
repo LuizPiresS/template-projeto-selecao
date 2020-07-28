@@ -1,29 +1,36 @@
 module.exports = {
   env: {
-    jest: true
+    browser: true,
+    es2020: true,
+    node: true,
+    jest: true,
   },
-  extends: 'standard-with-typescript',
+  extends: [
+    "plugin:react/recommended",
+    "standard",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/standard",
+    "prettier/react",
+  ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: './tsconfig.json'
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 11,
+    sourceType: "module",
   },
-  plugins: ['eslint-plugin-import-helpers'],
+  plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
-    '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/consistent-type-assertions': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
-    'import-helpers/order-imports': [
-      'warn',
-      { // example configuration
-        newlinesBetween: 'always',
-        groups: [
-          'module',
-          '/^@shared/',
-          ['parent', 'sibling', 'index']
-        ],
-        alphabetize: { order: 'asc', ignoreCase: true }
-      }
-    ]
-  }
-}
+    "prettier/prettier": "error",
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
+    react: {
+      version: "detect",
+    },
+  },
+};

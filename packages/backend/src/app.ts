@@ -1,28 +1,28 @@
-import cors from 'cors'
-import express from 'express'
-import { createConnection } from 'typeorm'
+import cors from "cors";
+import express from "express";
+import { createConnection } from "typeorm";
 
-import userRoutes from './adapters/express/users/routes'
-import connetionOptions from './config/ormconfig'
+import userRoutes from "./adapters/express/users/routes";
+import connetionOptions from "./config/ormconfig";
 
 class App {
-  public express: express.Application
+  public express: express.Application;
 
-  public constructor () {
-    this.express = express()
-    this.middlewares()
-    this.routes()
+  public constructor() {
+    this.express = express();
+    this.middlewares();
+    this.routes();
   }
 
-  private middlewares (): void {
-    this.express.use(express.json())
-    this.express.use(cors())
+  private middlewares(): void {
+    this.express.use(express.json());
+    this.express.use(cors());
   }
 
-  private async routes (): Promise<void> {
-    await createConnection(connetionOptions)
-    userRoutes()
+  private async routes(): Promise<void> {
+    await createConnection(connetionOptions);
+    userRoutes();
   }
 }
 
-export default new App().express
+export default new App().express;
