@@ -16,12 +16,8 @@ const connetionOptions: ConnectionOptions = {
     'src/database/entities/**/*.ts',
     'build/database/entities/**/*.js'
   ],
-  migrations: [
-    'src/database/migration/**/*.ts'
-  ],
-  subscribers: [
-    'src/database/subscriber/**/*.ts'
-  ],
+  migrations: ['src/database/migration/'],
+  subscribers: ['src/database/subscriber/'],
   cli: {
     entitiesDir: 'src/database/entities',
     migrationsDir: 'src/database/migrations',

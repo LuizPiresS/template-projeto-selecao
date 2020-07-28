@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-constructor */
 import { IPresenter } from '../../common/IPresenter'
 import { ISecurity } from '../../common/Isecurity'
 import { IValidator } from '../../common/IValidator'
@@ -8,7 +9,6 @@ import { IUserRepository } from '../user.repository'
 import { UserDuplicatedEmailError } from './../errors/user-duplicated-email.error'
 
 export class CreateUserInteractor {
-  // eslint-disable-next-line no-useless-constructor
   constructor(
     protected readonly validator: IValidator,
     protected readonly presenter: IPresenter<CreateUserResponse>,
@@ -42,6 +42,7 @@ export class CreateUserInteractor {
         createdAt
       } = await this.userRepository.createAndSave(data)
 
+      const token = this.security.encodeToken({ id })
       // Presenter success response
       await this.presenter.reply({
         id,
@@ -49,6 +50,7 @@ export class CreateUserInteractor {
         gitHubUsername,
         lastName,
         email,
+        token,
         createdAt
       })
     } catch (error) {

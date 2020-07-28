@@ -6,7 +6,7 @@ import { SecurityAdapter } from '../../security/security.adapter'
 import { ValidatorAdapter } from '../../validator/validator.adapter'
 import { CreateUserJSONPresenter } from './create-user-json-adapter'
 
-export function UserRoutes () {
+export function UserRoutes(): void {
   // const userRoutes =
   const repository = new UserDataSource()
   const validator = new ValidatorAdapter()
@@ -18,7 +18,12 @@ export function UserRoutes () {
 
   app.post('/users', async (req, res) => {
     const presenter = new CreateUserJSONPresenter(res)
-    const interactor = new CreateUserInteractor(validator, presenter, repository, security)
+    const interactor = new CreateUserInteractor(
+      validator,
+      presenter,
+      repository,
+      security
+    )
 
     // create a request DTO
     const { firstName, lastName, gitHubUsername, email, password } = req.body

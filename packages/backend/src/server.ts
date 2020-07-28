@@ -1,8 +1,10 @@
+import dotenv from 'dotenv'
+
 import app from './app'
-import { appConfig } from './config/config'
 import 'reflect-metadata'
 
-const port = appConfig.port
+dotenv.config()
+const port = 3003
 
 app.listen(port, () => {
   console.log(`App listing on port ${port}`)
